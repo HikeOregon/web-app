@@ -1,6 +1,4 @@
 from django.test import TestCase
-from django.core.exceptions import ValidationError
-
 from api.models import Trail
 
 class TrailTestCase(TestCase):

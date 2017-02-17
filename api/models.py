@@ -13,7 +13,6 @@ class Trail(models.Model):
     longitude = models.FloatField(validators=[MaxValueValidator(180.0), MinValueValidator(-180.0)])
     length = models.FloatField()
     difficulty = models.IntegerField()
-    # Images should be a foreign key
     restroom = models.BooleanField()
 
     def __str__(self):
