@@ -1,9 +1,10 @@
 from django.test import TestCase
+from rest_framework import serializers
 from api.models import Trail
 from api.serializers import TrailSerializer
 
 class TrailSerializerTestCase(TestCase):
-
+    
     fields = dict(
             name='Multnomah Falls',
             latitude=12.32,
@@ -19,3 +20,31 @@ class TrailSerializerTestCase(TestCase):
         fields = self.fields.copy()
         fields['id'] = 1
         self.assertDictEqual(serializer.data, fields)
+
+    def test_latitude_min(self):
+        fields = self.fields.copy()
+        fields['latitude'] = -300
+        serializer = TrailSerializer(data=fields)
+        with self.assertRaises(serializers.ValidationError):
+            serializer.is_valid(raise_exception=True)
+
+    def test_latitude_max(self):
+        fields = self.fields.copy()
+        fields['latitude'] = 300
+        serializer = TrailSerializer(data=fields)
+        with self.assertRaises(serializers.ValidationError):
+            serializer.is_valid(raise_exception=True)
+
+    def test_longitude_min(self):
+        fields = self.fields.copy()
+        fields['latitude'] = -300
+        serializer = TrailSerializer(data=fields)
+        with self.assertRaises(serializers.ValidationError):
+            serializer.is_valid(raise_exception=True)
+
+    def test_longitude_max(self):
+        fields = self.fields.copy()
+        fields['longitude'] = 300
+        serializer = TrailSerializer(data=fields)
+        with self.assertRaises(serializers.ValidationError):
+            serializer.is_valid(raise_exception=True)
