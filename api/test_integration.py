@@ -14,8 +14,16 @@ class TrailIntegrationTestCase(APITestCase):
             restroom=True,
         )
 
-    def test_trail_list(self):
+    def test_trail_detail(self):
         url = reverse('trail-detail', kwargs={'pk': 1})
         response = self.client.get(url)
         response.render()
         self.assertEqual(response.data['name'], 'Multnomah Falls')
+
+    def test_trail_list(self):
+        url = reverse('trail-list')
+        response = self.client.get(url)
+        response.render()
+        first_item = response.data[0]
+        self.assertEqual(first_item['name'], 'Multnomah Falls')
+        self.assertEqual(len(response.data), 1)
