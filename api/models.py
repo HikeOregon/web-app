@@ -6,12 +6,10 @@ class Trail(models.Model):
 
     ..note: Doesn't include weather, which should be on the front-end.
 
-    Latitude and longitude support decimal places for precision up to one meter.
-
     """
     name = models.CharField(max_length=200)
-    latitude = models.DecimalField(max_digits=7, decimal_places=5)
-    longitude = models.DecimalField(max_digits=8, decimal_places=5)
+    latitude = models.FloatField()
+    longitude = models.FloatField()
     length = models.FloatField()
     difficulty = models.IntegerField()
     # Images should be a foreign key
