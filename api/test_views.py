@@ -40,3 +40,63 @@ class TrailViewSetTestCase(TestCase):
         response.render()
         first_item = response.data['trails'][0]
         self.assertEqual(first_item['name'], 'Multnomah Falls')
+
+    def test_filtering_difficulty(self):
+        Trail.objects.create(
+            name='Trilliam Lake',
+            latitude=12.32,
+            longitude=13.11,
+            length=20.1,
+            difficulty=4,
+            restroom=True,
+        )
+
+        Trail.objects.create(
+            name='Not Difficulty 4',
+            latitude=12.32,
+            longitude=13.11,
+            length=20.1,
+            difficulty=2,
+            restroom=True,
+        )
+
+        request = self.factory.get('/api/trails/', {'difficulty': 4})
+        detail_view = TrailViewSet.as_view({'get': 'list'})
+        response = detail_view(request)
+        response.render()
+        trails = response.data['trails']
+        self.assertEqual(len(trails), 2)
+
+    def test_filtering_restroom(self):
+        Trail.objects.create(
+            name='Trilliam Lake',
+            latitude=12.32,
+            longitude=13.11,
+            length=20.1,
+            difficulty=4,
+            restroom=False,
+        )
+
+        request = self.factory.get('/api/trails/', {'restroom': False})
+        detail_view = TrailViewSet.as_view({'get': 'list'})
+        response = detail_view(request)
+        response.render()
+        trails = response.data['trails']
+        self.assertEqual(len(trails), 1)
+
+    def test_filtering_length(self):
+        Trail.objects.create(
+            name='Trilliam Lake',
+            latitude=12.32,
+            longitude=13.11,
+            length=1.1,
+            difficulty=4,
+            restroom=False,
+        )
+
+        request = self.factory.get('/api/trails/', {'length': 1.1})
+        detail_view = TrailViewSet.as_view({'get': 'list'})
+        response = detail_view(request)
+        response.render()
+        trails = response.data['trails']
+        self.assertEqual(len(trails), 1)
