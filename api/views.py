@@ -35,6 +35,17 @@ class TrailViewSet(viewsets.ModelViewSet):
 
         /api/trails/?search=Lake
 
+    ## Query Parameter Filtering
+
+    To get all trails with a difficulty of 4:
+
+        /api/trails/?difficulty=4
+
+    To get all trails with a difficulty of 4 and that have a restroom:
+
+        /api/trails/?difficulty=4&restroom=true
+
+
     """
 
     queryset = Trail.objects.all()

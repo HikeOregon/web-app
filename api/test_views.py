@@ -100,3 +100,21 @@ class TrailViewSetTestCase(TestCase):
         response.render()
         trails = response.data['trails']
         self.assertEqual(len(trails), 1)
+
+
+    def test_filtering_length(self):
+        Trail.objects.create(
+            name='Trilliam Lake',
+            latitude=12.32,
+            longitude=13.11,
+            length=1.1,
+            difficulty=4,
+            restroom=False,
+        )
+
+        request = self.factory.get('/api/trails/', {'length': 1.1, 'restroom': False})
+        detail_view = TrailViewSet.as_view({'get': 'list'})
+        response = detail_view(request)
+        response.render()
+        trails = response.data['trails']
+        self.assertEqual(len(trails), 1)
