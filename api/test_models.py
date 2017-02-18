@@ -1,3 +1,11 @@
+"""test_models.py
+
+Copyright © 2017 HikeOregon. All rights reserved.
+Created by Bobby Eshleman on 2/18/2017.
+
+"""
+
+
 from django.test import TestCase
 from api.models import Trail
 

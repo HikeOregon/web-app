@@ -1,3 +1,11 @@
+"""serializers.py
+
+Copyright © 2017 HikeOregon. All rights reserved.
+Created by Bobby Eshleman on 2/18/2017.
+
+"""
+
+
 from rest_framework import serializers
 from rest_framework.utils.serializer_helpers import ReturnDict
 from api.models import Trail

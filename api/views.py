@@ -1,3 +1,11 @@
+"""views.py
+
+Copyright © 2017 HikeOregon. All rights reserved.
+Created by Bobby Eshleman on 2/18/2017.
+
+"""
+
+
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
 from rest_framework.response import Response
@@ -5,6 +13,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.filters import SearchFilter
 from api.models import Trail
 from api.serializers import TrailSerializer
+
 
 class TrailViewSet(viewsets.ModelViewSet):
     """

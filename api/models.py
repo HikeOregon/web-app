@@ -1,5 +1,14 @@
+"""models.py
+
+Copyright © 2017 HikeOregon. All rights reserved.
+Created by Bobby Eshleman on 2/18/2017.
+
+"""
+
+
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+
 
 class Trail(models.Model):
     """Defines Trail data.  The data behind the trail list and trail detail
