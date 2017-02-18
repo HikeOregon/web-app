@@ -5,13 +5,15 @@ Created by Bobby Eshleman on 2/18/2017.
 
 """
 
+
 from django.test import TestCase
 from rest_framework import serializers
 from api.models import Trail
 from api.serializers import TrailSerializer
 
-class TrailSerializerTestCase(TestCase):
 
+class TrailSerializerTestCase(TestCase):
+    
     fields = dict(
             name='Multnomah Falls',
             latitude=12.32,

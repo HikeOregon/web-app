@@ -36,6 +36,7 @@ class TrailViewSet(viewsets.ModelViewSet):
         /api/trails/?search=Lake
 
     """
+    
     queryset = Trail.objects.all()
     serializer_class = TrailSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]

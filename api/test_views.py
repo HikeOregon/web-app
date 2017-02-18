@@ -11,6 +11,7 @@ from rest_framework.test import APIRequestFactory
 from api.views import TrailViewSet
 from api.models import Trail
 
+
 class TrailViewSetTestCase(TestCase):
 
     def setUp(self):
