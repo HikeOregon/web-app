@@ -26,9 +26,6 @@ class TrailViewSet(viewsets.ModelViewSet):
 
         /api/trails/?search=Lake
 
-
-
-
     """
     queryset = Trail.objects.all()
     serializer_class = TrailSerializer
@@ -37,7 +34,14 @@ class TrailViewSet(viewsets.ModelViewSet):
     search_fields = ('name',)
 
     def retrieve(self, request, pk=None):
+        """Returns a list Response containing only one result.
+
+        The return format is the same as the list view.  This is done for API uniformity.
+
+        """
         queryset = Trail.objects.all()
         trail = get_object_or_404(queryset, pk=pk)
+        # To keep the retrieve and list API's uniform, we pass in the single trail as a list
+        # and set `many` to True
         serializer = TrailSerializer([trail], many=True)
         return Response(serializer.data)
