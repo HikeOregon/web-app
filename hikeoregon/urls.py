@@ -22,7 +22,7 @@ schema_view = get_swagger_view(title='HikeOregon API')
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^api/docs/$', schema_view),
+    url(r'^api/$', schema_view),
     url(r'^api/', include('api.urls')),
 
 ]
