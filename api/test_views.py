@@ -21,12 +21,13 @@ class TrailViewSetTestCase(TestCase):
         detail_view = TrailViewSet.as_view({'get': 'retrieve'})
         response = detail_view(request, pk=1)
         response.render()
-        self.assertEqual(response.data['name'], 'Multnomah Falls')
+        first_item = response.data['trails'][0]
+        self.assertEqual(first_item['name'], 'Multnomah Falls')
 
     def test_list(self):
         request = self.factory.get('/api/trails/')
         detail_view = TrailViewSet.as_view({'get': 'list'})
         response = detail_view(request)
         response.render()
-        first_item = response.data[0]
+        first_item = response.data['trails'][0]
         self.assertEqual(first_item['name'], 'Multnomah Falls')

@@ -27,15 +27,16 @@ class TrailIntegrationTestCase(APITestCase):
         url = reverse('trail-detail', kwargs={'pk': 1})
         response = self.client.get(url)
         response.render()
-        self.assertEqual(response.data['name'], 'Multnomah Falls')
+        first_trail = response.data['trails'][0]
+        self.assertEqual(first_trail['name'], 'Multnomah Falls')
 
     def test_trail_list(self):
         url = reverse('trail-list')
         response = self.client.get(url)
         response.render()
-        first_item = response.data[0]
-        self.assertEqual(first_item['name'], 'Multnomah Falls')
-        self.assertEqual(len(response.data), 2)
+        trails = response.data['trails']
+        self.assertEqual(len(trails), 2)
+        self.assertEqual(trails[0]['name'], 'Multnomah Falls')
 
     def test_filter(self):
         url = reverse('trail-list')
@@ -44,5 +45,5 @@ class TrailIntegrationTestCase(APITestCase):
         response.render()
         self.assertEqual(len(response.data), 1)
 
-        first_item = response.data[0]
-        self.assertEqual(first_item['name'], 'Trilliam Lake Loop')
+        first_trail = response.data['trails'][0]
+        self.assertEqual(first_trail['name'], 'Trilliam Lake Loop')

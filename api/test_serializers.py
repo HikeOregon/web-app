@@ -4,7 +4,7 @@ from api.models import Trail
 from api.serializers import TrailSerializer
 
 class TrailSerializerTestCase(TestCase):
-    
+
     fields = dict(
             name='Multnomah Falls',
             latitude=12.32,
@@ -16,9 +16,10 @@ class TrailSerializerTestCase(TestCase):
 
     def test_okay(self):
         trail = Trail.objects.create(**self.fields)
-        serializer = TrailSerializer(trail)
+        serializer = TrailSerializer([trail], many=True)
         fields = self.fields.copy()
         fields['id'] = 1
+        fields = {'trails': [fields]}
         self.assertDictEqual(serializer.data, fields)
 
     def test_latitude_min(self):
