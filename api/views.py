@@ -11,10 +11,10 @@ class TrailViewSet(viewsets.ModelViewSet):
 
     ## A Single Trail
 
-    Get individual trails by the `pk` parameter.  For example, to get the trail
-    with `pk=1`, use:
+    Get individual trails by using their `id`.  For example, to get the trail
+    with `id=1`, use:
 
-        /api/trails/?pk=1
+        /api/trails/1
 
 
     ## Name Search
