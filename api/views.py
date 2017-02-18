@@ -17,6 +17,9 @@ from api.serializers import TrailSerializer
 
 class TrailViewSet(viewsets.ModelViewSet):
     """
+
+
+
     This is the API endpoint for lists of trails and individual trail details.
     You can use the **Filters** button in the top-right to use the search feature.
 
@@ -35,7 +38,10 @@ class TrailViewSet(viewsets.ModelViewSet):
 
         /api/trails/?search=Lake
 
-    ## Query Parameter Filtering
+    ## Query Parameters
+
+    The only supported parameters:  `difficulty`, `restroom`, `length` 
+
 
     To get all trails with a difficulty of 4:
 
