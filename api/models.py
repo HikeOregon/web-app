@@ -25,14 +25,4 @@ class Trail(models.Model):
     restroom = models.BooleanField()
 
     def __str__(self):
-        string = 'Trail(name={}, latitude={}, longitude={}, length={}, '
-        string += 'difficulty={}, restroom={})'
-
-        return string.format(
-                self.name,
-                self.latitude,
-                self.longitude,
-                self.length,
-                self.difficulty,
-                self.restroom,
-        )
+        return self.name
