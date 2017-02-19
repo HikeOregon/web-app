@@ -1,3 +1,6 @@
 from django.contrib import admin
+from api.models import Trail
 
-# Register your models here.
+@admin.register(Trail)
+class TrailAdmin(admin.ModelAdmin):
+    pass
