@@ -16,13 +16,13 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework_swagger.views import get_swagger_view
-
+from api.admin import admin_site
 
 schema_view = get_swagger_view(title='HikeOregon API')
 
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin/', admin_site.urls),
     url(r'^api/docs/$', schema_view),
     url(r'^api/', include('api.urls')),
 
