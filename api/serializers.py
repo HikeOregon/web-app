@@ -8,13 +8,13 @@ Created by Bobby Eshleman on 2/18/2017.
 
 from rest_framework import serializers
 from rest_framework.utils.serializer_helpers import ReturnDict
-from api.models import Trail
+from api.models import Trail, TrailImage
 
 
 class TrailListSerializer(serializers.ListSerializer):
     class Meta:
         model = Trail
-        fields = ('id', 'name', 'latitude', 'longitude', 'length', 'difficulty', 'restroom')
+        fields = ('id', 'name', 'latitude', 'longitude', 'length', 'difficulty', 'restroom',)
 
     @property
     def data(self):
@@ -22,8 +22,18 @@ class TrailListSerializer(serializers.ListSerializer):
         ret = {'trails': ret}
         return ReturnDict(ret, serializer=self)
 
+
 class TrailSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Trail
         fields = ('id', 'name', 'latitude', 'longitude', 'length', 'difficulty', 'restroom')
         list_serializer_class = TrailListSerializer
+
+
+class TrailImageSerializer(serializers.ModelSerializer):
+    trail = TrailSerializer()
+
+    class Meta:
+        model = TrailImage
+        fields = ('image', 'timestamp', 'trail',)

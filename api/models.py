@@ -36,3 +36,9 @@ class Trail(models.Model):
                 self.difficulty,
                 self.restroom,
         )
+
+
+class TrailImage(models.Model):
+    trail = models.ForeignKey(Trail)
+    image = models.ImageField(upload_to='trail_images/%Y/%m/%d/')
+    timestamp = models.DateTimeField(auto_now_add=True)

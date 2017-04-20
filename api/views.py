@@ -11,8 +11,8 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.filters import SearchFilter, DjangoFilterBackend
-from api.models import Trail
-from api.serializers import TrailSerializer
+from api.models import Trail, TrailImage
+from api.serializers import TrailSerializer, TrailImageSerializer
 
 
 class TrailViewSet(viewsets.ModelViewSet):
@@ -30,3 +30,11 @@ class TrailViewSet(viewsets.ModelViewSet):
         # and set `many` to True
         serializer = TrailSerializer([trail], many=True)
         return Response(serializer.data)
+
+
+class TrailImageViewSet(viewsets.ModelViewSet):
+    queryset = TrailImage.objects.all()
+    serializer_class = TrailImageSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('trail',)
